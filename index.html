@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
+    /> -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Star Wars: A Character Guide</title>
+  </head>
+  <body>
+    <div id="“temp-page”">
+      <!-- <div class="page-loader animate-flicker">Please wait...</div> -->
+    </div>
+    <div id="main-page">
+      <a href="#cardlist">
+        <div class="cover-container">
+          <img id="cover-image" src="/images/logo.png" />
+        </div>
+      </a>
+      <div id="flex-container">
+        <div id="cardlist">
+          <div class="card" id="0">
+            <img id="0" class="picture" src="" />
+            <div class="title">Luke Skywalker</div>
+          </div>
+        </div>
+        <!-- The Dialog -->
+        <div id="myModal" class="modal">
+          <div class="modal-load">
+            <div class="loader"></div>
+          </div>
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="grid-container">
+              <div class="char-name">Character Name</div>
+              <img src="" class="portrait" />
+              <div class="stats">Birth Year</div>
+              <div class="stats">Gender</div>
+              <div class="stats">Species</div>
+              <div class="stats">Homeworld</div>
+              <div class="stats">Films</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="pa2 ph5-m ph6-l tc bg-near-black">
+        <small class="pa2">
+          <a href="" rel="noopener noreferrer" target="_blank"> </a>
+        </small>
+      </footer>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>

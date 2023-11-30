@@ -1,0 +1,303 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: auto 0;
+  font-family: Arial;
+}
+
+/* LOADS FONT FROM SERVER ROOT DIRECTORY */
+@font-face {
+  font-family: "Star Jedi";
+  /* src: url("/assets/fonts/Starjedi.ttf"); */
+}
+
+#temp-page {
+  max-width: 100%;
+  max-height: 100vh;
+  height: 100%;
+}
+
+#main-page {
+  display: none;
+}
+
+#cover-image {
+  max-width: 100%;
+  max-height: 100vh;
+  height: 100%;
+}
+
+#flex-container {
+  background-image: url("/images/bg.jpg");
+  background-size: repeat;
+  padding: 15px 0;
+}
+
+#cardlist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 15px;
+  padding: 15px;
+  min-height: 70vh;
+}
+
+.page-loader {
+  text-align: center;
+  vertical-align: center;
+  font-family: "Star Jedi";
+  font-size: 10vh;
+  padding: 25vh 10vh;
+}
+
+/*SETS FADE IN & FADE OUT ANIMATION - EXTRACTED FROM THE WEB*/
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animate-flicker {
+  -webkit-animation: flickerAnimation 1s infinite;
+  -moz-animation: flickerAnimation 1s infinite;
+  -o-animation: flickerAnimation 1s infinite;
+  animation: flickerAnimation 1s infinite;
+}
+
+.cover-container {
+  z-index: 1;
+  background-color: black;
+  text-align: center;
+  border-bottom: 2px solid white;
+  max-width: 100%;
+  max-height: 100vh;
+}
+
+.card {
+  width: 210px;
+  height: auto;
+  border: 3px solid goldenrod;
+  margin: 15px 5px;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(255, 255, 255, 2) 0px 5px 15px,
+    inset rgba(255, 255, 255, 2) 0px -10px 20px;
+  cursor: pointer;
+}
+
+.picture {
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+  font-family: Verdana;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Disable scroll*/
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content,
+.modal-load {
+  background-color: #fefefe;
+  margin: 15vh auto;
+  padding: 4% 4%;
+  border: 3px solid #888;
+  border-radius: 20px;
+  width: 700px;
+  background: linear-gradient(
+    to right,
+    rgba(239, 239, 239, 100%) 0%,
+    rgba(219, 219, 219, 100%) 50%,
+    rgba(239, 239, 239, 100%) 100%
+  );
+}
+
+.modal-load {
+  text-align: center;
+}
+
+.loader {
+  border: 2vw solid #f3f3f3; /* Light grey */
+  border-top: 2vw solid goldenrod; /* Blue */
+  border-radius: 50%;
+  width: 15vw;
+  height: 15vw;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.modal-content {
+  display: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto;
+  grid-column-gap: 5%;
+  grid-row-gap: 0;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 45px;
+  font-weight: bold;
+  z-index: 1;
+  user-select: none;
+  margin: -4vw -3vw 0 0;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.portrait {
+  grid-row: 1 / span 6;
+  width: 100%;
+  height: auto;
+  border: 4px solid goldenrod;
+  user-select: none;
+}
+
+.char-name {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.stats {
+  font-size: 20px;
+}
+
+.footer {
+  width: 100%;
+  height: 20px;
+  background-color: black;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-family: Arial;
+  color: white;
+  padding: 20px 0;
+}
+
+/*** Handles Modal settings when screen width decreases to less than 735px */
+@media only screen and (max-width: 735px) {
+  .modal-content,
+  .modal-load {
+    width: 95vw;
+  }
+
+  .stats {
+    justify-self: start;
+    font-size: 2.8vw;
+  }
+}
+/*** Handles Modal settings when screen width decreases to less than 516px */
+@media only screen and (max-width: 516px) {
+  .modal-content,
+  .modal-load {
+    width: 70vh;
+    height: auto;
+    margin: 5vh auto;
+  }
+
+  .grid-container {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    padding: 10px;
+    justify-items: center;
+    grid-row-gap: 5px;
+  }
+
+  .char-name {
+    font-size: 6vw;
+    margin-bottom: 2vw;
+  }
+
+  .portrait {
+    grid-row: 2 / span 7;
+    width: 60%;
+    margin-bottom: 2vw;
+  }
+
+  .stats {
+    justify-self: start;
+    font-size: 2.1vh;
+  }
+}
