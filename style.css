@@ -7,20 +7,15 @@ body {
   font-family: Arial;
 }
 
-/* LOADS FONT FROM SERVER ROOT DIRECTORY */
-@font-face {
+/*// LOADS FONT FROM SERVER ROOT DIRECTORY @font-face {
   font-family: "Star Jedi";
-  /* src: url("/assets/fonts/Starjedi.ttf"); */
-}
+  src: url("/assets/fonts/Starjedi.ttf");
+} */
 
 #temp-page {
   max-width: 100%;
   max-height: 100vh;
   height: 100%;
-}
-
-#main-page {
-  display: none;
 }
 
 #cover-image {
@@ -29,7 +24,7 @@ body {
   height: 100%;
 }
 
-#flex-container {
+.flex-container {
   background-image: url("/images/bg.jpg");
   background-size: repeat;
   padding: 15px 0;
@@ -115,7 +110,7 @@ body {
 
 .card {
   width: 210px;
-  height: auto;
+  height: 100%;
   border: 3px solid goldenrod;
   margin: 15px 5px;
   display: flex;
@@ -144,9 +139,8 @@ body {
   font-weight: bold;
 }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
+/* The Model (background) */
+.model {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -157,9 +151,9 @@ body {
   background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
 }
 
-/* Modal Content */
-.modal-content,
-.modal-load {
+/* Model Content */
+.model-content,
+.model-load {
   background-color: #fefefe;
   margin: 15vh auto;
   padding: 4% 4%;
@@ -174,7 +168,7 @@ body {
   );
 }
 
-.modal-load {
+.model-load {
   text-align: center;
 }
 
@@ -197,7 +191,7 @@ body {
   }
 }
 
-.modal-content {
+.hidden {
   display: none;
 }
 
@@ -256,10 +250,10 @@ body {
   padding: 20px 0;
 }
 
-/*** Handles Modal settings when screen width decreases to less than 735px */
+/*** Handles model settings when screen width decreases to less than 735px */
 @media only screen and (max-width: 735px) {
-  .modal-content,
-  .modal-load {
+  .model-content,
+  .model-load {
     width: 95vw;
   }
 
@@ -268,10 +262,10 @@ body {
     font-size: 2.8vw;
   }
 }
-/*** Handles Modal settings when screen width decreases to less than 516px */
+/*** Handles model settings when screen width decreases to less than 516px */
 @media only screen and (max-width: 516px) {
-  .modal-content,
-  .modal-load {
+  .model-content,
+  .model-load {
     width: 70vh;
     height: auto;
     margin: 5vh auto;
@@ -300,4 +294,25 @@ body {
     justify-self: start;
     font-size: 2.1vh;
   }
+}
+
+.btn {
+  color: white;
+  border: none;
+  /* background: linear-gradient(to right, goldenrod, rgb(99, 75, 15)); */
+  background-color: goldenrod;
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+  width: 100px;
+  padding: 5px;
+}
+
+.btn:hover {
+  border-radius: 30px;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
