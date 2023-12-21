@@ -15,6 +15,11 @@ const modelContent = document.querySelector(".model .model-content");
 const modelLoader = document.querySelector(".model .model-load");
 const closeModel = document.querySelector(".close");
 
+const charName = document.querySelector(".char-name");
+const charImg = document.querySelector(".portrait");
+const [birthyear, gender, species, homeworld, films] =
+  document.querySelectorAll(".stats-data");
+
 // console.log(cardList, model);
 
 const characters = [];
@@ -62,7 +67,10 @@ btnPrev.addEventListener("click", function () {
 
 closeModel.addEventListener("click", function () {
   model.classList.add("hidden");
-  modelLoader.classList.add("hidden");
+  charName.innerHTML = "";
+
+  console.log(model);
+  // modelLoader.classList.add("hidden");
   modelContent.classList.add("hidden");
 });
 
@@ -94,15 +102,18 @@ const getDetails = async function (url, errorMsg = "Something went wrong") {
 };
 
 const getFilms = async function (films, errorMsg = "Something went wrong") {
-  let filmsarr = [];
-
-  await films.forEach(async (f) => {
-    const t = await getDetails(f, "Film not found");
-
-    filmsarr.push(t);
-  });
-
-  return filmsarr;
+  try {
+    const filmsarr = await Promise.all(
+      films.map(async (f) => {
+        const t = await getDetails(f, "Film not found");
+        return t;
+      })
+    );
+    return filmsarr;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
 const renderData = function (page) {
@@ -157,11 +168,6 @@ const init = function () {
 load();
 
 const renderDetails = async function (obj) {
-  const charName = document.querySelector(".char-name");
-  const charImg = document.querySelector(".portrait");
-  const [birthyear, gender, species, homeworld, films] =
-    document.querySelectorAll(".stats-data");
-
   const char = characters[obj];
 
   if (char.homeworld.includes("https")) {
@@ -172,7 +178,8 @@ const renderDetails = async function (obj) {
         ? "unknown"
         : await getDetails(char.species[0], "HomeWorld not found");
 
-    char.films = await getFilms(char.films, "HomeWorld not found");
+    char.films = await getFilms(char.films, "Films not found");
+    console.log(char.films);
   }
 
   charImg.src = `${imgURL}/${+obj + 1 < 17 ? +obj + 1 : +obj + 2}.jpg`;
@@ -181,19 +188,22 @@ const renderDetails = async function (obj) {
   modelContent.classList.remove("hidden");
 
   charName.innerHTML = char.name;
+
   birthyear.innerHTML = char.birth_year;
+
   gender.innerHTML = char.gender;
 
   species.innerHTML = char.species;
 
   films.innerHTML = char.films.join(", ");
+
   homeworld.innerHTML = char.homeworld;
   //   films.innerHTML = ;
 };
 
 const openModel = async function (obj) {
   model.classList.remove("hidden");
-
+  modelLoader.classList.remove("hidden");
   //get data
   await renderDetails(obj.id);
 
